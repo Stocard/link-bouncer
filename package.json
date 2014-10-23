@@ -1,0 +1,17 @@
+{
+  "name": "link-bouncer",
+  "version": "0.0.1",
+  "description": "Link bouncer used for friends referral",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.0.0"
+  },
+  "dependencies": {
+    "locale": "0.0.20"
+  }
+}
