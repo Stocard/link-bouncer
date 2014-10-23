@@ -1,5 +1,5 @@
 {
-  "name": "link-bouncer",
+  "name": "sc-link-bouncer",
   "version": "0.0.1",
   "description": "Link bouncer used for friends referral",
   "main": "index.js",
