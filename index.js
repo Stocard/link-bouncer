@@ -8,7 +8,7 @@ module.exports = createMiddleware;
 function createMiddleware(trackFn, redirectLinks) {
   return trackShareClick;
 
-  function trackShareClick(req, res) {
+  function trackShareClick(req, res, next) {
     var analyticsDict = {};
     // compose analytics properties
     var sender_id = req.query.s;
@@ -30,7 +30,7 @@ function createMiddleware(trackFn, redirectLinks) {
     } else if (req.headers["user-agent"].indexOf("Windows") > -1) {
         res.header("Location", redirectLinks.Windows);
         analyticsDict["$os"] = "Windows Phone";
-    } else if (req.headers["user-agent"].indexOf("iOS") > -1) {
+    } else if (req.headers["user-agent"].indexOf("iPhone") > -1) {
         res.header("Location", redirectLinks.iPhone);
         analyticsDict["$os"] = "iPhone OS";
     } else if (req.headers["user-agent"].indexOf("Macintosh") > -1) {
@@ -47,5 +47,6 @@ function createMiddleware(trackFn, redirectLinks) {
     // track and bounce
     trackFn("share link visited", analyticsDict);
     res.send(302);
+    if (next) next();
   }
 }

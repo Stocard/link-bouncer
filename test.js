@@ -16,8 +16,8 @@ var mixpanelOSProperty = {
 };
 
 describe('link-bouncer middleware', function () {
-  createTest('iPhone', 'Stocard/3.13 StocardHTTPClient iOS/8.0.2');
-  createTest('Android', 'Stocard/3.7.2 StocardHTTPClient Android/4.1.2');
+  createTest('iPhone', 'Mozilla/5.0 (iPhone; CPU iPhone OS 5_0_1 like Mac OS X)');
+  createTest('Android', 'Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B)');
   createTest('Windows', 'Windows');
 
   function createTest(testName, userAgent) {
@@ -27,7 +27,7 @@ describe('link-bouncer middleware', function () {
       var senderID = 'abc';
       var req = createFakeRequest(userAgent, {s: senderID});
       var res = createFakeResponse(onSend);
-      middleware(req, res);
+      middleware(req, res, function () {});
 
       function track(event, properties) {
         assert.equal(event, 'share link visited');
