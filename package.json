@@ -12,6 +12,7 @@
     "mocha": "^2.0.0"
   },
   "dependencies": {
-    "locale": "0.0.20"
+    "locale": "0.0.20",
+    "mixpanel": "0.0.20"
   }
 }
