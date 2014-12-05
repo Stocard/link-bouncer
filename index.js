@@ -9,6 +9,10 @@ module.exports = createMiddleware
 
 function createMiddleware(trackFn, redirectLinks) {
 
+  // init response template
+  var bouncerTemplate = fs.readFileSync("./bouncer-template.html", "utf8")
+  mustache.parse(bouncerTemplate)
+
   return trackShareClick
 
   function trackShareClick(req, res, next) {
@@ -43,8 +47,6 @@ function createMiddleware(trackFn, redirectLinks) {
     }
 
     // generate response template
-    var bouncerTemplate = fs.readFileSync("./bouncer-template.html", "utf8")
-    mustache.parse(bouncerTemplate)
     var values = {
       "target_url" : target_url,
     }
