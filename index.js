@@ -7,7 +7,7 @@ module.exports = createMiddleware;
 
 function createMiddleware(trackFn, redirectLinks) {
   // init response template
-  var bouncerTemplate = fs.readFileSync('./bouncer-template.html', 'utf8');
+  var bouncerTemplate = fs.readFileSync(__dirname + '/bouncer-template.html', 'utf8');
   mustache.parse(bouncerTemplate);
 
   return trackShareClick;

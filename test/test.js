@@ -1,8 +1,5 @@
 
 var assert = require('assert');
-var fs = require('fs');
-var mustache = require('mustache');
-
 var createMiddleware = require('../index');
 
 var redirectLinks = {
@@ -37,23 +34,40 @@ describe('link-bouncer middleware', function () {
         tracked = true;
       }
       function onEnd() {
+        var expectedHtml = expected(redirectLinks[testName]);
         assert.equal(res.status, 200);
         assert.ok(tracked);
-        assert.equal(res.content, getContent(redirectLinks[testName]));
+        assert.equal(res.content, expectedHtml);
         done();
-      }
-
-      function getContent(target_url){
-        var bouncerTemplate = fs.readFileSync('./bouncer-template.html', 'utf8');
-        mustache.parse(bouncerTemplate);
-        var values = {
-          'target_url' : target_url
-        };
-        return mustache.render(bouncerTemplate, values);
       }
     });
   }
 });
+
+function expected(targetUrl) {
+  var html = '<!DOCTYPE html>\n\
+<html>\n\
+  <head>\n\
+    <meta http-equiv="refresh" content="0; url={{:target_url}}" />\n\
+    <!--\n\
+    <meta property="og:title" content=""/>\n\
+    <meta property="og:site_name" content=""/>\n\
+    <meta property="og:description" content="">\n\
+    <meta property="og:image" content=""/>\n\
+    -->\n\
+    <meta property="og:type" content="website"/>\n\
+    <meta property="og:see_also" content="http://stocard.de"/>\n\
+    <meta property="og:see_also" content="https://www.facebook.com/Stocard"/>\n\
+    <meta property="og:see_also" content="https://www.facebook.com/StocardUK"/>\n\
+\n\
+  </head>\n\
+  <body>\n\
+    You are being forwarded automatically. Click:\n\
+        <a href="{{:target_url}}">here</a>\n\
+  </body>\n\
+</html>\n';
+  return html.replace(/{{:target_url}}/g, targetUrl);
+}
 
 function createFakeRequest(userAgent, query) {
   return {
