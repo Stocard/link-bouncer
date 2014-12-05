@@ -1,0 +1,16 @@
+{
+  "name": "sc-link-bouncer",
+  "version": "0.0.1",
+  "dependencies": {
+    "locale": {
+      "version": "0.0.20",
+      "from": "locale@0.0.20",
+      "resolved": "https://registry.npmjs.org/locale/-/locale-0.0.20.tgz"
+    },
+    "mustache": {
+      "version": "0.8.2",
+      "from": "mustache@>=0.8.1 <0.9.0",
+      "resolved": "https://registry.npmjs.org/mustache/-/mustache-0.8.2.tgz"
+    }
+  }
+}

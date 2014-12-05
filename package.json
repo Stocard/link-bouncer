@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^2.0.0"
+    "mocha": "^2.0.0",
+    "mocha-jshint": "0.0.9"
   },
   "dependencies": {
     "locale": "0.0.20",
-    "mustache": "~0.8.1",
-    "mixpanel": "0.0.20"
+    "mustache": "~0.8.1"
   }
 }
