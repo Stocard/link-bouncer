@@ -58,7 +58,7 @@ function createMiddleware(trackFn, redirectLinks) {
     // track and bounce
     trackFn("share link visited", analyticsDict)
     res.write(content)
-    res.send()
+    res.end()
     if (next) next()
   }
 }

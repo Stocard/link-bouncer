@@ -64,7 +64,7 @@ function createFakeRequest(userAgent, query) {
   }
 }
 
-function createFakeResponse(onSend) {
+function createFakeResponse(onEnd) {
   var that = {
     headers: [],
     status : /*over*/9000,
@@ -78,7 +78,8 @@ function createFakeResponse(onSend) {
     write : function(content){
       that.content = content
     },
-    send: onSend
+    send: function(){},
+    end: onEnd,
   }
   return that
 }
